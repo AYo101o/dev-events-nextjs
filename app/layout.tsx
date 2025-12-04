@@ -12,8 +12,7 @@ const schibstedGrotesk = Schibsted_Grotesk({
 const martianMono = Martian_Mono({
   variable: "--font-martian-mono",
   subsets: ["latin"],
-});
-
+}); 
 export const metadata: Metadata = {
   title: "Dev event",
   description: "The Hub for Every Dev event You Musn't Miss",
