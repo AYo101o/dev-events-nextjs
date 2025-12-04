@@ -1,0 +1,1290 @@
+global.css
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --color-blue: #94eaff;
+  --color-light-100: #e7f2ff;
+  --color-light-200: #bdbdbd;
+  --color-border-dark: #151024;
+  --color-dark-100: #0d161a;
+  --color-dark-200: #182830;
+  --radius: 0.625rem;
+  --background: #030708;
+  --foreground: #ffffff;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #59deca;
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-blue: var(--color-blue);
+  --color-light-100: var(--color-light-100);
+  --color-light-200: var(--color-light-200);
+  --color-border-dark: var(--color-border-dark);
+  --color-dark-100: var(--color-dark-100);
+  --color-dark-200: var(--color-dark-200);
+  --font-schibsted-grotesk: var(--font-schibsted-grotesk);
+  --font-martian-mono: var(--font-martian-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility text-gradient {
+  @apply to-blue bg-gradient-to-b from-white via-white bg-clip-text font-semibold text-transparent;
+}
+
+@utility glass {
+  @apply bg-[#12121280]/50 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl border-b border-border-dark;
+}
+
+@utility card-shadow {
+  box-shadow: 0px 4px 40px 0px #00000066;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  main {
+    @apply mx-auto container flex flex-col sm:px-10 px-5 py-10;
+  }
+
+  h1 {
+    @apply text-gradient text-6xl font-semibold max-sm:text-4xl;
+  }
+
+  h3 {
+    @apply font-schibsted-grotesk text-2xl font-bold;
+  }
+
+  ul {
+    @apply list-disc list-inside;
+  }
+}
+
+@layer components {
+  #home {
+    .subheading {
+      @apply text-light-100 text-lg max-sm:text-sm text-center mt-5;
+    }
+  }
+
+  #explore-btn {
+    @apply border-dark-200 bg-dark-100 flex w-fit cursor-pointer  rounded-full border px-8 py-3.5 max-sm:w-full text-center;
+
+    a {
+      @apply flex-center gap-2 text-center w-full;
+    }
+  }
+
+  header {
+    @apply glass sticky top-0 z-50;
+
+    nav {
+      @apply flex flex-row justify-between mx-auto container sm:px-10 px-5 py-4;
+    }
+
+    .logo {
+      @apply flex flex-row items-center gap-2;
+
+      p {
+        @apply text-xl font-bold italic max-sm:hidden;
+      }
+    }
+
+    ul {
+      @apply flex flex-row items-center gap-6;
+    }
+  }
+
+  .events {
+    @apply grid md:grid-cols-3 gap-10 sm:grid-cols-2 grid-cols-1;
+  }
+
+  #event-card {
+    @apply flex flex-col gap-3;
+
+    .poster {
+      @apply h-[300px] w-full rounded-lg object-cover;
+    }
+
+    .title {
+      @apply text-[20px] font-semibold line-clamp-1;
+    }
+
+    p {
+      @apply text-light-200 text-sm font-light;
+    }
+
+    .datetime {
+      @apply text-light-200 flex flex-row flex-wrap items-center gap-4;
+
+      div {
+        @apply flex flex-row gap-2;
+      }
+    }
+  }
+
+  #event {
+    .header {
+      @apply flex w-2/3 flex-col items-start gap-4 max-lg:w-full mb-10;
+    }
+
+    .details {
+      @apply flex w-full flex-col lg:flex-row gap-12 items-start mt-12 max-lg:items-center;
+
+      .content {
+        @apply flex flex-[2] flex-col gap-8 max-lg:w-full;
+
+        .banner {
+          @apply max-h-[457px] w-full rounded-lg object-cover;
+        }
+
+        .agenda {
+          @apply flex flex-col gap-2;
+
+          ul {
+            li {
+              @apply text-light-100 text-lg max-sm:text-sm;
+            }
+          }
+        }
+      }
+
+      .booking {
+        @apply flex-1 w-full p-4 border-l border-gray-700;
+
+        .signup-card {
+          @apply bg-dark-100 border-dark-200 card-shadow flex w-full flex-col gap-6 rounded-[10px] border px-5 py-6;
+        }
+      }
+    }
+
+    h2 {
+      @apply font-schibsted-grotesk text-2xl font-bold;
+    }
+
+    p {
+      @apply text-light-100 text-lg max-sm:text-sm;
+    }
+
+    .flex-col-gap-2 {
+      @apply flex flex-col gap-2;
+    }
+
+    .flex-row-gap-2 {
+      @apply flex flex-row gap-2;
+    }
+  }
+
+  .pill {
+    @apply bg-dark-100 text-light-100 text-xs rounded-[6px] px-5 py-2;
+  }
+
+  #book-event {
+    @apply flex flex-col gap-6;
+
+    form {
+      @apply flex flex-col gap-6;
+
+      div {
+        @apply flex flex-col gap-2;
+
+        input {
+          @apply bg-dark-200 rounded-[6px] px-5 py-2.5;
+        }
+      }
+
+      button {
+        @apply bg-primary hover:bg-primary/90 w-full cursor-pointer items-center justify-center rounded-[6px] px-4 py-2.5 text-lg font-semibold text-black;
+      }
+    }
+  }
+}
+
+prompt-constants
+Create a new file lib/constants.ts in the root lib folder. This file should export an array named events containing real upcoming or popular developer conferences, hackathons, or tech meetups. Use image paths from public/images for the image field. Make sure the data looks realistic and can be directly imported and used in the EventCard component.
+
+lib/constants
+export const events = [
+  {
+    slug: "react-conf-2024",
+    image: "/images/event1.png",
+    title: "React Conf 2024",
+    location: "San Francisco, CA",
+    date: "March 15, 2024",
+    time: "9:00 AM - 6:00 PM",
+  },
+  {
+    slug: "nextjs-summit",
+    image: "/images/event2.png",
+    title: "Next.js Summit",
+    location: "Austin, TX",
+    date: "April 22, 2024",
+    time: "10:00 AM - 5:00 PM",
+  },
+  {
+    slug: "javascript-world",
+    image: "/images/event3.png",
+    title: "JavaScript World Conference",
+    location: "New York, NY",
+    date: "May 8, 2024",
+    time: "8:30 AM - 7:00 PM",
+  },
+  {
+    slug: "ai-hackathon-2024",
+    image: "/images/event4.png",
+    title: "AI Innovation Hackathon",
+    location: "Seattle, WA",
+    date: "June 14-16, 2024",
+    time: "48 Hours",
+  },
+  {
+    slug: "web3-developer-meetup",
+    image: "/images/event5.png",
+    title: "Web3 Developer Meetup",
+    location: "Miami, FL",
+    date: "July 20, 2024",
+    time: "6:00 PM - 9:00 PM",
+  },
+  {
+    slug: "fullstack-conference",
+    image: "/images/event6.png",
+    title: "Full Stack Conference",
+    location: "Denver, CO",
+    date: "August 12, 2024",
+    time: "9:00 AM - 6:00 PM",
+  },
+  {
+    slug: "devops-unleashed",
+    image: "/images/event1.png",
+    title: "DevOps Unleashed",
+    location: "Chicago, IL",
+    date: "September 5, 2024",
+    time: "8:00 AM - 5:30 PM",
+  },
+  {
+    slug: "mobile-dev-summit",
+    image: "/images/event2.png",
+    title: "Mobile Development Summit",
+    location: "Los Angeles, CA",
+    date: "October 18, 2024",
+    time: "9:30 AM - 6:00 PM",
+  },
+  {
+    slug: "cybersecurity-conference",
+    image: "/images/event3.png",
+    title: "Cybersecurity Conference",
+    location: "Boston, MA",
+    date: "November 2, 2024",
+    time: "8:00 AM - 7:00 PM",
+  },
+  {
+    slug: "data-science-hackathon",
+    image: "/images/event4.png",
+    title: "Data Science Hackathon",
+    location: "San Diego, CA",
+    date: "December 7-9, 2024",
+    time: "72 Hours",
+  },
+  {
+    slug: "cloud-native-meetup",
+    image: "/images/event5.png",
+    title: "Cloud Native Meetup",
+    location: "Portland, OR",
+    date: "January 15, 2025",
+    time: "6:30 PM - 9:00 PM",
+  },
+  {
+    slug: "frontend-masters",
+    image: "/images/event6.png",
+    title: "Frontend Masters Conference",
+    location: "Nashville, TN",
+    date: "February 28, 2025",
+    time: "9:00 AM - 5:00 PM",
+  },
+];
+
+lightrays
+"use client";
+
+import { useRef, useEffect, useState } from "react";
+import { Renderer, Program, Triangle, Mesh } from "ogl";
+
+export type RaysOrigin =
+  | "top-center"
+  | "top-center-offset"
+  | "top-left"
+  | "top-right"
+  | "right"
+  | "left"
+  | "bottom-center"
+  | "bottom-right"
+  | "bottom-left";
+
+interface LightRaysProps {
+  raysOrigin?: RaysOrigin;
+  raysColor?: string;
+  raysSpeed?: number;
+  lightSpread?: number;
+  rayLength?: number;
+  pulsating?: boolean;
+  fadeDistance?: number;
+  saturation?: number;
+  followMouse?: boolean;
+  mouseInfluence?: number;
+  noiseAmount?: number;
+  distortion?: number;
+  className?: string;
+}
+
+const DEFAULT_COLOR = "#ffffff";
+
+const hexToRgb = (hex: string): [number, number, number] => {
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return m
+    ? [
+        parseInt(m[1], 16) / 255,
+        parseInt(m[2], 16) / 255,
+        parseInt(m[3], 16) / 255,
+      ]
+    : [1, 1, 1];
+};
+
+const getAnchorAndDir = (
+  origin: RaysOrigin,
+  w: number,
+  h: number
+): { anchor: [number, number]; dir: [number, number] } => {
+  const outside = 0.2;
+  switch (origin) {
+    case "top-left":
+      return { anchor: [0, -outside * h], dir: [0, 1] };
+    case "top-right":
+      return { anchor: [w, -outside * h], dir: [0, 1] };
+    case "top-center-offset":
+      return { anchor: [0.5 * w + 0.2 * w, -outside * h], dir: [-0.2, 1] };
+    case "left":
+      return { anchor: [-outside * w, 0.5 * h], dir: [1, 0] };
+    case "right":
+      return { anchor: [(1 + outside) * w, 0.5 * h], dir: [-1, 0] };
+    case "bottom-left":
+      return { anchor: [0, (1 + outside) * h], dir: [0, -1] };
+    case "bottom-center":
+      return { anchor: [0.5 * w, (1 + outside) * h], dir: [0, -1] };
+    case "bottom-right":
+      return { anchor: [w, (1 + outside) * h], dir: [0, -1] };
+    default: // "top-center"
+      return { anchor: [0.5 * w, -outside * h], dir: [0, 1] };
+  }
+};
+
+const LightRays: React.FC<LightRaysProps> = ({
+  raysOrigin = "top-center",
+  raysColor = DEFAULT_COLOR,
+  raysSpeed = 1,
+  lightSpread = 1,
+  rayLength = 2,
+  pulsating = false,
+  fadeDistance = 1.0,
+  saturation = 1.0,
+  followMouse = true,
+  mouseInfluence = 0.1,
+  noiseAmount = 0.0,
+  distortion = 0.0,
+  className = "",
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const uniformsRef = useRef<any>(null);
+  const rendererRef = useRef<Renderer | null>(null);
+  const mouseRef = useRef({ x: 0.5, y: 0.5 });
+  const smoothMouseRef = useRef({ x: 0.5, y: 0.5 });
+  const animationIdRef = useRef<number | null>(null);
+  const meshRef = useRef<any>(null);
+  const cleanupFunctionRef = useRef<(() => void) | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observerRef.current.observe(containerRef.current);
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible || !containerRef.current) return;
+
+    if (cleanupFunctionRef.current) {
+      cleanupFunctionRef.current();
+      cleanupFunctionRef.current = null;
+    }
+
+    const initializeWebGL = async () => {
+      if (!containerRef.current) return;
+
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      if (!containerRef.current) return;
+
+      const renderer = new Renderer({
+        dpr: Math.min(window.devicePixelRatio, 2),
+        alpha: true,
+      });
+      rendererRef.current = renderer;
+
+      const gl = renderer.gl;
+      gl.canvas.style.width = "100%";
+      gl.canvas.style.height = "100%";
+
+      while (containerRef.current.firstChild) {
+        containerRef.current.removeChild(containerRef.current.firstChild);
+      }
+      containerRef.current.appendChild(gl.canvas);
+
+      const vert = `
+attribute vec2 position;
+varying vec2 vUv;
+void main() {
+  vUv = position * 0.5 + 0.5;
+  gl_Position = vec4(position, 0.0, 1.0);
+}`;
+
+      const frag = `precision highp float;
+
+uniform float iTime;
+uniform vec2  iResolution;
+
+uniform vec2  rayPos;
+uniform vec2  rayDir;
+uniform vec3  raysColor;
+uniform float raysSpeed;
+uniform float lightSpread;
+uniform float rayLength;
+uniform float pulsating;
+uniform float fadeDistance;
+uniform float saturation;
+uniform vec2  mousePos;
+uniform float mouseInfluence;
+uniform float noiseAmount;
+uniform float distortion;
+
+varying vec2 vUv;
+
+float noise(vec2 st) {
+  return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
+                  float seedA, float seedB, float speed) {
+  vec2 sourceToCoord = coord - raySource;
+  vec2 dirNorm = normalize(sourceToCoord);
+  float cosAngle = dot(dirNorm, rayRefDirection);
+
+  float distortedAngle = cosAngle + distortion * sin(iTime * 2.0 + length(sourceToCoord) * 0.01) * 0.2;
+  
+  float spreadFactor = pow(max(distortedAngle, 0.0), 1.0 / max(lightSpread, 0.001));
+
+  float distance = length(sourceToCoord);
+  float maxDistance = iResolution.x * rayLength;
+  float lengthFalloff = clamp((maxDistance - distance) / maxDistance, 0.0, 1.0);
+  
+  float fadeFalloff = clamp((iResolution.x * fadeDistance - distance) / (iResolution.x * fadeDistance), 0.5, 1.0);
+  float pulse = pulsating > 0.5 ? (0.8 + 0.2 * sin(iTime * speed * 3.0)) : 1.0;
+
+  float baseStrength = clamp(
+    (0.45 + 0.15 * sin(distortedAngle * seedA + iTime * speed)) +
+    (0.3 + 0.2 * cos(-distortedAngle * seedB + iTime * speed)),
+    0.0, 1.0
+  );
+
+  return baseStrength * lengthFalloff * fadeFalloff * spreadFactor * pulse;
+}
+
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+  vec2 coord = vec2(fragCoord.x, iResolution.y - fragCoord.y);
+  
+  vec2 finalRayDir = rayDir;
+  if (mouseInfluence > 0.0) {
+    vec2 mouseScreenPos = mousePos * iResolution.xy;
+    vec2 mouseDirection = normalize(mouseScreenPos - rayPos);
+    finalRayDir = normalize(mix(rayDir, mouseDirection, mouseInfluence));
+  }
+
+  vec4 rays1 = vec4(1.0) *
+               rayStrength(rayPos, finalRayDir, coord, 36.2214, 21.11349,
+                           1.5 * raysSpeed);
+  vec4 rays2 = vec4(1.0) *
+               rayStrength(rayPos, finalRayDir, coord, 22.3991, 18.0234,
+                           1.1 * raysSpeed);
+
+  fragColor = rays1 * 0.5 + rays2 * 0.4;
+
+  if (noiseAmount > 0.0) {
+    float n = noise(coord * 0.01 + iTime * 0.1);
+    fragColor.rgb *= (1.0 - noiseAmount + noiseAmount * n);
+  }
+
+  float brightness = 1.0 - (coord.y / iResolution.y);
+  fragColor.x *= 0.1 + brightness * 0.8;
+  fragColor.y *= 0.3 + brightness * 0.6;
+  fragColor.z *= 0.5 + brightness * 0.5;
+
+  if (saturation != 1.0) {
+    float gray = dot(fragColor.rgb, vec3(0.299, 0.587, 0.114));
+    fragColor.rgb = mix(vec3(gray), fragColor.rgb, saturation);
+  }
+
+  fragColor.rgb *= raysColor;
+}
+
+void main() {
+  vec4 color;
+  mainImage(color, gl_FragCoord.xy);
+  gl_FragColor  = color;
+}`;
+
+      const uniforms = {
+        iTime: { value: 0 },
+        iResolution: { value: [1, 1] },
+
+        rayPos: { value: [0, 0] },
+        rayDir: { value: [0, 1] },
+
+        raysColor: { value: hexToRgb(raysColor) },
+        raysSpeed: { value: raysSpeed },
+        lightSpread: { value: lightSpread },
+        rayLength: { value: rayLength },
+        pulsating: { value: pulsating ? 1.0 : 0.0 },
+        fadeDistance: { value: fadeDistance },
+        saturation: { value: saturation },
+        mousePos: { value: [0.5, 0.5] },
+        mouseInfluence: { value: mouseInfluence },
+        noiseAmount: { value: noiseAmount },
+        distortion: { value: distortion },
+      };
+      uniformsRef.current = uniforms;
+
+      const geometry = new Triangle(gl);
+      const program = new Program(gl, {
+        vertex: vert,
+        fragment: frag,
+        uniforms,
+      });
+      const mesh = new Mesh(gl, { geometry, program });
+      meshRef.current = mesh;
+
+      const updatePlacement = () => {
+        if (!containerRef.current || !renderer) return;
+
+        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+
+        const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
+        renderer.setSize(wCSS, hCSS);
+
+        const dpr = renderer.dpr;
+        const w = wCSS * dpr;
+        const h = hCSS * dpr;
+
+        uniforms.iResolution.value = [w, h];
+
+        const { anchor, dir } = getAnchorAndDir(raysOrigin, w, h);
+        uniforms.rayPos.value = anchor;
+        uniforms.rayDir.value = dir;
+      };
+
+      const loop = (t: number) => {
+        if (!rendererRef.current || !uniformsRef.current || !meshRef.current) {
+          return;
+        }
+
+        uniforms.iTime.value = t * 0.001;
+
+        if (followMouse && mouseInfluence > 0.0) {
+          const smoothing = 0.92;
+
+          smoothMouseRef.current.x =
+            smoothMouseRef.current.x * smoothing +
+            mouseRef.current.x * (1 - smoothing);
+          smoothMouseRef.current.y =
+            smoothMouseRef.current.y * smoothing +
+            mouseRef.current.y * (1 - smoothing);
+
+          uniforms.mousePos.value = [
+            smoothMouseRef.current.x,
+            smoothMouseRef.current.y,
+          ];
+        }
+
+        try {
+          renderer.render({ scene: mesh });
+          animationIdRef.current = requestAnimationFrame(loop);
+        } catch (error) {
+          console.warn("WebGL rendering error:", error);
+          return;
+        }
+      };
+
+      window.addEventListener("resize", updatePlacement);
+      updatePlacement();
+      animationIdRef.current = requestAnimationFrame(loop);
+
+      cleanupFunctionRef.current = () => {
+        if (animationIdRef.current) {
+          cancelAnimationFrame(animationIdRef.current);
+          animationIdRef.current = null;
+        }
+
+        window.removeEventListener("resize", updatePlacement);
+
+        if (renderer) {
+          try {
+            const canvas = renderer.gl.canvas;
+            const loseContextExt =
+              renderer.gl.getExtension("WEBGL_lose_context");
+            if (loseContextExt) {
+              loseContextExt.loseContext();
+            }
+
+            if (canvas && canvas.parentNode) {
+              canvas.parentNode.removeChild(canvas);
+            }
+          } catch (error) {
+            console.warn("Error during WebGL cleanup:", error);
+          }
+        }
+
+        rendererRef.current = null;
+        uniformsRef.current = null;
+        meshRef.current = null;
+      };
+    };
+
+    initializeWebGL();
+
+    return () => {
+      if (cleanupFunctionRef.current) {
+        cleanupFunctionRef.current();
+        cleanupFunctionRef.current = null;
+      }
+    };
+  }, [
+    isVisible,
+    raysOrigin,
+    raysColor,
+    raysSpeed,
+    lightSpread,
+    rayLength,
+    pulsating,
+    fadeDistance,
+    saturation,
+    followMouse,
+    mouseInfluence,
+    noiseAmount,
+    distortion,
+  ]);
+
+  useEffect(() => {
+    if (!uniformsRef.current || !containerRef.current || !rendererRef.current)
+      return;
+
+    const u = uniformsRef.current;
+    const renderer = rendererRef.current;
+
+    u.raysColor.value = hexToRgb(raysColor);
+    u.raysSpeed.value = raysSpeed;
+    u.lightSpread.value = lightSpread;
+    u.rayLength.value = rayLength;
+    u.pulsating.value = pulsating ? 1.0 : 0.0;
+    u.fadeDistance.value = fadeDistance;
+    u.saturation.value = saturation;
+    u.mouseInfluence.value = mouseInfluence;
+    u.noiseAmount.value = noiseAmount;
+    u.distortion.value = distortion;
+
+    const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
+    const dpr = renderer.dpr;
+    const { anchor, dir } = getAnchorAndDir(raysOrigin, wCSS * dpr, hCSS * dpr);
+    u.rayPos.value = anchor;
+    u.rayDir.value = dir;
+  }, [
+    raysColor,
+    raysSpeed,
+    lightSpread,
+    raysOrigin,
+    rayLength,
+    pulsating,
+    fadeDistance,
+    saturation,
+    mouseInfluence,
+    noiseAmount,
+    distortion,
+  ]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current || !rendererRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      mouseRef.current = { x, y };
+    };
+
+    if (followMouse) {
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    }
+  }, [followMouse]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`pointer-events-none relative z-[3] h-full w-full overflow-hidden ${className}`.trim()}
+    />
+  );
+};
+
+export default LightRays;
+
+mongoose(db connect)
+You are a backend developer working on a Next.js application with Mongoose and TypeScript. 
+
+Your task is to,
+- Create a new file `lib/mongodb.ts` in the lib folder of a Next.js application. 
+- Set up a Mongoose database connection to MongoDB using TypeScript with proper types (avoid using any). 
+- Cache the connection to prevent multiple connections during development. 
+- Write clear and concise comments explaining key parts of the code. 
+- Make sure the code is clean, readable, and production-ready.
+
+mongoose (models)
+You are a backend developer working on a Next.js application with Mongoose and TypeScript. Your task is to build a database layer with two Mongoose models, `Event` and `Booking` in a new `database` folder.
+
+📁 You must create exactly three files:
+
+1. `event.model.ts`
+2. `booking.model.ts`
+3. `index.ts`
+
+1. `database/event.model.ts`
+
+Create a strongly typed Mongoose schema and model called Event with the following fields:
+
+- `title` – string, required
+- `slug` – string, unique, auto-generated from title
+- `description` – string, required
+- `overview` – string, required
+- `image` – string, required
+- `venue` – string, required
+- `location` – string, required
+- `date` – string, required
+- `time` – string, required
+- `mode` – string (e.g., online, offline, hybrid), required
+- `audience` – string, required
+- `agenda` – array of strings, required
+- `organizer` – string, required
+- `tags` – array of strings, required
+- `createdAt` – date, auto-generated
+- `updatedAt` – date, auto-generated
+
+Requirements:
+
+- Use a pre-save hook to automatically generate a URL-friendly slug from the title.
+- Only regenerate the slug if the title changes.
+- In the same pre-save hook, validate and normalize the `date` to ISO format and ensure `time` is stored in a consistent format.
+- Validate that required fields are present and non-empty.
+- Add a unique index to the slug.
+- Enable automatic timestamps.
+- Use strict TypeScript types (no `any`).
+- Write concise comments explaining key logic such as slug generation, date formatting, and validation.
+
+2. `database/booking.model.ts`
+
+Create a strongly typed Mongoose schema and model called Booking with the following fields:
+
+- `eventId` – ObjectId (reference to `Event`), required
+- `email` – string, required, must be a valid email
+- `createdAt` – date, auto-generated
+- `updatedAt` – date, auto-generated
+
+Requirements:
+
+- In a pre-save hook, verify that the referenced `eventId` corresponds to an existing `Event`. Throw an error if the event does not exist.
+- Validate that `email` is properly formatted.
+- Add an index on `eventId` for faster queries.
+- Enable automatic timestamps.
+- Use strong TypeScript types throughout.
+- Include concise comments explaining pre-save validation and schema design decisions.
+
+3. `database/index.ts`
+
+- Export both `Event` and `Booking` models so they can be imported anywhere in the application from a single file.
+
+---
+
+✅ Final Deliverable:
+
+- Exactly three files: `event.model.ts`, `booking.model.ts`, and `index.ts`.
+- Each model must use pre-save hooks for slug generation, date normalization, and reference validation.
+- Code should be production-grade, clean, type-safe, and clear to understand.
+- Include only meaningful, concise comments — no unnecessary explanations.
+
+mongodb.ts
+import mongoose from 'mongoose';
+
+// Define the connection cache type
+type MongooseCache = {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+};
+
+// Extend the global object to include our mongoose cache
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: MongooseCache | undefined;
+}
+
+const MONGODB_URI = process.env.MONGODB_URI;
+
+
+// Initialize the cache on the global object to persist across hot reloads in development
+let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
+
+if (!global.mongoose) {
+  global.mongoose = cached;
+}
+
+/**
+ * Establishes a connection to MongoDB using Mongoose.
+ * Caches the connection to prevent multiple connections during development hot reloads.
+ * @returns Promise resolving to the Mongoose instance
+ */
+async function connectDB(): Promise<typeof mongoose> {
+  // Return existing connection if available
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  // Return existing connection promise if one is in progress
+  if (!cached.promise) {
+    // Validate MongoDB URI exists
+    if (!MONGODB_URI) {
+      throw new Error(
+        'Please define the MONGODB_URI environment variable inside .env.local'
+      );
+    }
+    const options = {
+      bufferCommands: false, // Disable Mongoose buffering
+    };
+
+    // Create a new connection promise
+    cached.promise = mongoose.connect(MONGODB_URI!, options).then((mongoose) => {
+      return mongoose;
+    });
+  }
+
+  try {
+    // Wait for the connection to establish
+    cached.conn = await cached.promise;
+  } catch (error) {
+    // Reset promise on error to allow retry
+    cached.promise = null;
+    throw error;
+  }
+
+  return cached.conn;
+}
+
+export default connectDB;
+
+event.model.ts
+import { Schema, model, models, Document } from 'mongoose';
+
+// TypeScript interface for Event document
+export interface IEvent extends Document {
+  title: string;
+  slug: string;
+  description: string;
+  overview: string;
+  image: string;
+  venue: string;
+  location: string;
+  date: string;
+  time: string;
+  mode: string;
+  audience: string;
+  agenda: string[];
+  organizer: string;
+  tags: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const EventSchema = new Schema<IEvent>(
+  {
+    title: {
+      type: String,
+      required: [true, 'Title is required'],
+      trim: true,
+      maxlength: [100, 'Title cannot exceed 100 characters'],
+    },
+    slug: {
+      type: String,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: [true, 'Description is required'],
+      trim: true,
+      maxlength: [1000, 'Description cannot exceed 1000 characters'],
+    },
+    overview: {
+      type: String,
+      required: [true, 'Overview is required'],
+      trim: true,
+      maxlength: [500, 'Overview cannot exceed 500 characters'],
+    },
+    image: {
+      type: String,
+      required: [true, 'Image URL is required'],
+      trim: true,
+    },
+    venue: {
+      type: String,
+      required: [true, 'Venue is required'],
+      trim: true,
+    },
+    location: {
+      type: String,
+      required: [true, 'Location is required'],
+      trim: true,
+    },
+    date: {
+      type: String,
+      required: [true, 'Date is required'],
+    },
+    time: {
+      type: String,
+      required: [true, 'Time is required'],
+    },
+    mode: {
+      type: String,
+      required: [true, 'Mode is required'],
+      enum: {
+        values: ['online', 'offline', 'hybrid'],
+        message: 'Mode must be either online, offline, or hybrid',
+      },
+    },
+    audience: {
+      type: String,
+      required: [true, 'Audience is required'],
+      trim: true,
+    },
+    agenda: {
+      type: [String],
+      required: [true, 'Agenda is required'],
+      validate: {
+        validator: (v: string[]) => v.length > 0,
+        message: 'At least one agenda item is required',
+      },
+    },
+    organizer: {
+      type: String,
+      required: [true, 'Organizer is required'],
+      trim: true,
+    },
+    tags: {
+      type: [String],
+      required: [true, 'Tags are required'],
+      validate: {
+        validator: (v: string[]) => v.length > 0,
+        message: 'At least one tag is required',
+      },
+    },
+  },
+  {
+    timestamps: true, // Auto-generate createdAt and updatedAt
+  }
+);
+
+// Pre-save hook for slug generation and data normalization
+EventSchema.pre('save', function (next) {
+  const event = this as IEvent;
+
+  // Generate slug only if title changed or document is new
+  if (event.isModified('title') || event.isNew) {
+    event.slug = generateSlug(event.title);
+  }
+
+  // Normalize date to ISO format if it's not already
+  if (event.isModified('date')) {
+    event.date = normalizeDate(event.date);
+  }
+
+  // Normalize time format (HH:MM)
+  if (event.isModified('time')) {
+    event.time = normalizeTime(event.time);
+  }
+
+  next();
+});
+
+// Helper function to generate URL-friendly slug
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+}
+
+// Helper function to normalize date to ISO format
+function normalizeDate(dateString: string): string {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date format');
+  }
+  return date.toISOString().split('T')[0]; // Return YYYY-MM-DD format
+}
+
+// Helper function to normalize time format
+function normalizeTime(timeString: string): string {
+  // Handle various time formats and convert to HH:MM (24-hour format)
+  const timeRegex = /^(\d{1,2}):(\d{2})(\s*(AM|PM))?$/i;
+  const match = timeString.trim().match(timeRegex);
+  
+  if (!match) {
+    throw new Error('Invalid time format. Use HH:MM or HH:MM AM/PM');
+  }
+  
+  let hours = parseInt(match[1]);
+  const minutes = match[2];
+  const period = match[4]?.toUpperCase();
+  
+  if (period) {
+    // Convert 12-hour to 24-hour format
+    if (period === 'PM' && hours !== 12) hours += 12;
+    if (period === 'AM' && hours === 12) hours = 0;
+  }
+  
+  if (hours < 0 || hours > 23 || parseInt(minutes) < 0 || parseInt(minutes) > 59) {
+    throw new Error('Invalid time values');
+  }
+  
+  return `${hours.toString().padStart(2, '0')}:${minutes}`;
+}
+
+// Create unique index on slug for better performance
+EventSchema.index({ slug: 1 }, { unique: true });
+
+// Create compound index for common queries
+EventSchema.index({ date: 1, mode: 1 });
+
+const Event = models.Event || model<IEvent>('Event', EventSchema);
+
+export default Event;
+
+booking.model.ts
+import { Schema, model, models, Document, Types } from 'mongoose';
+import Event from './event.model';
+
+// TypeScript interface for Booking document
+export interface IBooking extends Document {
+  eventId: Types.ObjectId;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const BookingSchema = new Schema<IBooking>(
+  {
+    eventId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Event',
+      required: [true, 'Event ID is required'],
+    },
+    email: {
+      type: String,
+      required: [true, 'Email is required'],
+      trim: true,
+      lowercase: true,
+      validate: {
+        validator: function (email: string) {
+          // RFC 5322 compliant email validation regex
+          const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+          return emailRegex.test(email);
+        },
+        message: 'Please provide a valid email address',
+      },
+    },
+  },
+  {
+    timestamps: true, // Auto-generate createdAt and updatedAt
+  }
+);
+
+// Pre-save hook to validate events exists before creating booking
+BookingSchema.pre('save', async function (next) {
+  const booking = this as IBooking;
+
+  // Only validate eventId if it's new or modified
+  if (booking.isModified('eventId') || booking.isNew) {
+    try {
+      const eventExists = await Event.findById(booking.eventId).select('_id');
+
+      if (!eventExists) {
+        const error = new Error(`Event with ID ${booking.eventId} does not exist`);
+        error.name = 'ValidationError';
+        return next(error);
+      }
+    } catch {
+      const validationError = new Error('Invalid events ID format or database error');
+      validationError.name = 'ValidationError';
+      return next(validationError);
+    }
+  }
+
+  next();
+});
+
+// Create index on eventId for faster queries
+BookingSchema.index({ eventId: 1 });
+
+// Create compound index for common queries (events bookings by date)
+BookingSchema.index({ eventId: 1, createdAt: -1 });
+
+// Create index on email for user booking lookups
+BookingSchema.index({ email: 1 });
+
+// Enforce one booking per events per email
+BookingSchema.index({ eventId: 1, email: 1 }, { unique: true, name: 'uniq_event_email' });
+const Booking = models.Booking || model<IBooking>('Booking', BookingSchema);
+
+export default Booking;
+
+api route testing
+{
+  "title": "Cloud Next 2026",
+  "description": "Google’s premier cloud computing event, showcasing innovations in AI, infrastructure, and enterprise solutions.",
+  "overview": "Cloud Next 2025 highlights the latest in cloud-native development, Kubernetes, AI, and enterprise scalability. Developers, architects, and executives gather to learn about new Google Cloud services, best practices, and success stories.",
+  "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2340",
+  "venue": "Moscone Center",
+  "location": "San Francisco, CA",
+  "date": "2025-04-10",
+  "time": "08:30",
+  "mode": "Hybrid (In-Person & Online)",
+  "audience": "Cloud engineers, DevOps, enterprise leaders, AI researchers",
+  "agenda": [
+    "08:30 AM - 09:30 AM | Keynote: AI-Driven Cloud Infrastructure",
+    "09:45 AM - 11:00 AM | Deep Dives: Kubernetes, Data Analytics, Security",
+    "11:15 AM - 12:30 PM | Product Demos & Networking",
+    "12:30 PM - 01:30 PM | Lunch",
+    "01:30 PM - 03:00 PM | Workshops: Scaling with GCP",
+    "03:15 PM - 04:30 PM | Fireside Chat: The Future of Enterprise Cloud"
+  ],
+  "organizer": "Google Cloud organizes Cloud Next to connect global businesses, developers, and innovators with the latest technologies and best practices in cloud computing.",
+  "tags": ["Cloud", "DevOps", "Kubernetes", "AI"]
+}
+
+prompt - api route
+You are a backend developer working on a Next.js app with TypeScript and Mongoose. Create a GET API route at `app/api/events/[slug]/route.ts` that returns event details by `slug`.
+
+🛠️ Requirements
+
+* Accept `slug` as a dynamic route parameter.
+* Query the `Event` model and return the matching event as JSON.
+* Use proper TypeScript types (no `any`).
+* Handle validation errors properly (missing or invalid `slug`, event not found, unexpected errors) and return appropriate status codes with clear messages.
+* Ensure code is production-ready, well-structured, type-safe, and includes concise comments.
+
+✅ Final Deliverable:
+A clean, production-level API route that fetches event data by `slug` with robust validation and error handling.
+
